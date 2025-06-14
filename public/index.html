@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validator App - Rejestracja i Logowanie</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json" />
+</head>
+<body>
+  <div class="container">
+    <h1>Formularz rejestracyjny</h1>
+    <form id="registerForm">
+      <label for="username">Nazwa użytkownika:</label>
+      <input type="text" id="username" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="password">Hasło:</label>
+      <input type="password" id="password" required />
+
+      <label for="confirmPassword">Powtórz hasło:</label>
+      <input type="password" id="confirmPassword" required />
+
+      <button type="submit">Zarejestruj</button>
+    </form>
+    <p id="error" class="error"></p>
+
+    <hr />
+
+    <h2>Logowanie</h2>
+    <form id="loginForm">
+      <label for="loginEmail">Email:</label>
+      <input type="email" id="loginEmail" required />
+
+      <label for="loginPassword">Hasło:</label>
+      <input type="password" id="loginPassword" required />
+
+      <button type="submit">Zaloguj się</button>
+    </form>
+    <p id="loginMessage"></p>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker zarejestrowany:', registration.scope);
+          })
+          .catch(err => {
+            console.log('Rejestracja Service Workera nie powiodła się:', err);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
