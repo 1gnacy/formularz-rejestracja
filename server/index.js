@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
   next();
 });
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../docs')));  // statyczne pliki z docs
 
 // Rejestracja
 app.post('/register', (req, res) => {
@@ -77,9 +77,9 @@ app.post('/login', (req, res) => {
   return res.json({ message: 'Zalogowano pomyślnie!', user: { username: user.username, email: user.email } });
 });
 
-// Fallback dla frontendowej aplikacji SPA
+// Fallback dla frontendowej aplikacji SPA (zmiana public na docs!)
 app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.sendFile(path.join(__dirname, '../docs/index.html'));
 });
 
 app.listen(PORT, () => {
